@@ -2,18 +2,6 @@
 ;; Date: Thu 13 Jul 2017 08:48:40 AM -03
 ;; Manoel Vilela
 
-;; FIXME: THIS IMPLEMENTATION IS WRONG, O(n²)
-
-;; O(n²) ? (very-slow)
-;; (defun longest-prefix-suffix (n pattern)
-;;   "Get the value of longest prefix of substring pattern on position n
-;;    which match its suffix"
-;;   (loop for end from 0 to n
-;;         for start from n above 0
-;;         for prefix = (subseq pattern 0 (1+ end))
-;;         for suffix = (subseq pattern start (1+ n))
-;;         if (equal prefix suffix)
-;;           maximize (length prefix)))
 
 (defun make-prefix-table (pattern length)
   "Get the shift prefix array table to use on KMP
@@ -33,11 +21,7 @@
           do (setf (aref prefix-table i) prefix)
           finally (return prefix-table))))
 
-;; we have a problem when pattern > string
-;; FIXME: this solution is O(m²+n²)!!!!!!!!!
-;; KMP algorithm is just O(m+n)
-;; Updated: Now is O(m²+n). I need fix the prefix calculation
-;; Updated2: Now is, probably, O(m+n)!
+
 (defun find-substring (pattern string)
   "Using the KMP algorithm, find the position of the pattern in string if exists
    Otherwise return nil."
@@ -63,7 +47,6 @@
                 do (setq pattern-index (aref prefix (1- pattern-index)))
               else
                 do (incf string-index))))
-
 
 (defun main ()
   (loop repeat (read)
