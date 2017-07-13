@@ -34,24 +34,35 @@
           finally (return prefix-table))))
 
 ;; we have a problem when pattern > string
+;; FIXME: this solution is O(m²+n²)!!!!!!!!!
+;; KMP algorithm is just O(m+n)
+;; Updated: Now is O(m²+n). I need fix the prefix calculation
+;; Updated2: Now is, probably, O(m+n)!
 (defun find-substring (pattern string)
   "Using the KMP algorithm, find the position of the pattern in string if exists
    Otherwise return nil."
   (let* ((pattern-length (length pattern))
          (string-length (length string))
          (prefix (make-prefix-table pattern pattern-length))
-         (mismatch 0))
+         (string-index 0)
+         (pattern-index 0))
     (when (> pattern-length string-length)
       (return-from find-substring nil))
-    (loop for start from 0 below string-length by (1+ (aref prefix mismatch))
-          for found = (loop for pattern-index from 0 below pattern-length
-                            for string-index from start below string-length
-                            do (setq mismatch pattern-index)
-                            always (eq (aref string string-index)
-                                       (aref pattern pattern-index))
-                            finally (return start))
-          if found
-            return found)))
+    (loop while (< string-index string-length)
+          when (eq (aref string string-index)
+                 (aref pattern pattern-index))
+            do (progn (incf string-index)
+                      (incf pattern-index))
+          if (= pattern-index pattern-length)
+            return (- string-index pattern-index)
+          else
+            if (and (< string-index string-length)
+                    (not (eq (aref string string-index)
+                             (aref pattern pattern-index))))
+              if (/= pattern-index 0)
+                do (setq pattern-index (aref prefix (1- pattern-index)))
+              else
+                do (incf string-index))))
 
 
 (defun main ()
