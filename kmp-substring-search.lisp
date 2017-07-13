@@ -4,23 +4,34 @@
 
 ;; FIXME: THIS IMPLEMENTATION IS WRONG, O(n²)
 
-(defun longest-prefix-suffix (n pattern)
-  "Get the value of longest prefix of substring pattern on position n
-   which match its suffix"
-  (loop for end from 0 to n
-        for start from n above 0
-        for prefix = (subseq pattern 0 (1+ end))
-        for suffix = (subseq pattern start (1+ n))
-        if (equal prefix suffix)
-          maximize (length prefix)))
+;; O(n²) ? (very-slow)
+;; (defun longest-prefix-suffix (n pattern)
+;;   "Get the value of longest prefix of substring pattern on position n
+;;    which match its suffix"
+;;   (loop for end from 0 to n
+;;         for start from n above 0
+;;         for prefix = (subseq pattern 0 (1+ end))
+;;         for suffix = (subseq pattern start (1+ n))
+;;         if (equal prefix suffix)
+;;           maximize (length prefix)))
 
 (defun make-prefix-table (pattern length)
   "Get the shift prefix array table to use on KMP
    algorithm. This value is used to shift string comparison
    on the next evaluation after a mismatch"
-  (make-array length :initial-contents
-              (loop for x from 0 below length
-                    collect (longest-prefix-suffix x pattern))))
+  (let ((prefix-table (make-array length :initial-element 0))
+        (prefix 0))
+    (loop for i from 1 below length
+          do (loop while (and (> prefix 0)
+                              (not (eq (aref pattern i)
+                                       (aref pattern prefix))))
+                   do (setq prefix (aref prefix-table (1- prefix))))
+          when (eq (aref pattern i)
+                   (aref pattern prefix))
+            do (incf prefix)
+          end
+          do (setf (aref prefix-table i) prefix)
+          finally (return prefix-table))))
 
 ;; we have a problem when pattern > string
 (defun find-substring (pattern string)
