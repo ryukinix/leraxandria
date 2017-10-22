@@ -2,8 +2,6 @@
 ;; Author: Manoel Vilela
 ;; Date: 10/07/2017 02:24:40
 
-;; FIXME: INNER LOOPS IS FUCKED
-;;
 ;; constants
 (defparameter *max-operations* 100000)
 (defparameter *valid-operations* "<>+-.,[]")
@@ -47,9 +45,6 @@
 
 ;; == BRAINFUCK OPERATIONS ==
 
-;; TODO: Avoid incf *source-pointer* on each internal operation
-;;       give that to do on interpret-program
-
 ;; .
 (defun print-data ()
   (princ (code-char (aref *memory* *data-pointer*)))
@@ -67,8 +62,6 @@
 (defun opened-loop-p ()
   (eql (aref *source* *source-pointer*) #\[))
 
-;; FIXME: probably bugs happens here, inner loops matching
-;; FIXED: the problem is not here, but in close-loop
 (defun goto-end-of-loop ()
   (let ((loops 0))
     (loop when (opened-loop-p)
@@ -137,7 +130,6 @@
   (incf *operations*))
 
 ;; == PARSING & EXECUTION ==
-;; ??? not executing parsing ???
 (defun interpret-program ()
   (loop while (< *source-pointer* *source-pointer-end*)
         when (>= *operations* *max-operations*)
