@@ -83,8 +83,7 @@
       (incf *source-pointer*)
       (goto-end-of-loop)))
 
-;; ] c
-;; NOTE: Need pop *open-loop-stack* no matter what
+;; ]
 (defun close-loop ()
   (if (plusp (aref *memory* *data-pointer*))
       (goto-start-of-loop)
@@ -148,4 +147,4 @@
     (read-source source-length)
     (interpret-program)))
 
-;; (main)
+(main)
