@@ -1,3 +1,5 @@
+(in-package :leraxandria/meta)
+
 (setf (symbol-function 'filter) #'remove-if-not)
 
 (defun range (a b)
