@@ -1,6 +1,14 @@
 # LERAXANDRIA
 
-A collection
+A personal collection of functions, macros and programs written in
+Common Lisp. Since 2014 I've been trying to learn Common Lisp
+properly. This scripts are the side effects of my learning journey.
+
+Maybe some functions can be useful for someone, because that I'm
+providing now in 2019 this collection as a proper ASDF system which
+will be available on [ultralisp].
+
+[ultralisp]: http://ultralisp.org
 
 # How to use
 
