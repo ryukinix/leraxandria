@@ -160,3 +160,6 @@
   (example-simple-window)
   (example-hello-world)
   (example-text-view-tooltip))
+
+(eval-when (:execute)
+  (main))
