@@ -63,7 +63,10 @@
   :serial t
   :pathname "apps/gui"
   :depends-on (:cl-cffi-gtk)
-  :components ((:file "cl-gtk-example")))
+  :components (
+               (:file "cl-gtk-example")
+               (:file "package" :depends-on ("cl-gtk-example"))
+               ))
 
 
 (asdf:defsystem #:leraxandria
