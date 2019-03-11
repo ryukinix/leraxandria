@@ -1,3 +1,12 @@
+;; NOTE: I'm not the author and I don't know who wrote this too, just
+;; found somewhere in the past
+
+(defpackage #:leraxandria/game-of-life
+  (:use :cl :cl-user)
+  (:export #:main ))
+
+(in-package #:leraxandria/game-of-life)
+
 (proclaim '(optimize (speed 3) (space 0) (debug 0)))
 
 (defparameter *width* 80)
@@ -68,7 +77,8 @@
   (unless (char= (read-char) #\q)
     (evolution (evolve board))))
 
-(defun game ()
+(defun main ()
   (evolution (make-board (make-random-pairs 22))))
 
-(game)
+(eval-when (:execute)
+ (main))

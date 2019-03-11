@@ -3,6 +3,8 @@
 ;; Lexical Memoization Macro
 ;; Example of usage: (memoize fib (fib 100))
 
+(in-package :leraxandria/math)
+
 (defmacro memoize (func &rest body)
   `(let ((table (make-hash-table))
          (old-func (symbol-function ',func)))
@@ -15,11 +17,12 @@
        (prog1 ,@body
              (setf (symbol-function ',func) old-func)))))
 
-(defun fib (n)
-  (if (<= n 1)
-      n
-      (+ (fib (- n 1))
-         (fib (- n 2)))))
+(eval-when (:execute)
+  (defun fib (n)
+    (if (<= n 1)
+        n
+        (+ (fib (- n 1))
+           (fib (- n 2)))))
 
 
-(memoize fib (fib 100))
+  (memoize fib (fib 100)))

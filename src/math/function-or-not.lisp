@@ -13,6 +13,7 @@
             do (return "NO")
           finally (return "YES"))))
 
-(defun main ()
-   (loop repeat (read)
-         do (format t "~a~%" (function-or-not-p (collect-points)))))
+(eval-when (:execute)
+  (defun main ()
+    (loop repeat (read)
+       do (format t "~a~%" (function-or-not-p (collect-points))))))

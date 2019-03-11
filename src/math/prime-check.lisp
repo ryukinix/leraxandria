@@ -1,3 +1,5 @@
+(in-package :leraxandria/math)
+
 (defun primep (n)
   (if (<= n 1)
       (return-from primep nil))
@@ -5,9 +7,3 @@
      never (and (/= x n)
                 (= (mod n x)
                    0))))
-
-(defun range (a b)
-  (loop for x from a below b collect x))
-
-(defun filter (predicate collection)
-  (remove-if-not predicate collection))

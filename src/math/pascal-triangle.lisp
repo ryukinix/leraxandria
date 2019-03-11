@@ -1,6 +1,8 @@
 ;; this is a fucking meta fucked fucking fuckups script to
 ;; get the lines of a pascal triangle
 
+(in-package :leraxandria/math)
+
 (defun factorial (n)
   (reduce #'* (cons 1 (loop for x from 1 to n collect x))))
 
@@ -21,7 +23,8 @@
   (loop for row in triangle
         do (format t "~{~a~^ ~}~%" row)))
 
-(defun main ()
-  (print-pascal-triangle (pascal-triangle (read))))
+(eval-when (:execute)
+ (defun main ()
+   (print-pascal-triangle (pascal-triangle (read))))
 
-(main)
+ (main))

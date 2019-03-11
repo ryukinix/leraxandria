@@ -1,18 +1,6 @@
 ;; borrowed from primep-factors.lisp
 
-(defun factors (n)
-  (let ((state n)
-        (c 2))
-    (loop while (> state 1)
-          if (= (mod state c) 0)
-            collect (prog1 c (setq state (/ state c)))
-          else
-            do (incf c))))
-
-(defun factors-map (n)
-  (loop with factors = (factors n)
-        for x in (remove-duplicates factors)
-        collect (list x (count x factors))))
+(in-package :leraxandria/math)
 
 (defun common-divisors (a b)
   (let ((factors-a (factors-map a))

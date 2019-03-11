@@ -1,6 +1,8 @@
 ;; Enter your code here. Read input from STDIN. Print output to STDOUT
 
-(defun fib (n)
+(in-package :leraxandria/math)
+
+(defun fib-iter (n)
   (loop with a = 0
         with b = 1
         repeat n
@@ -9,4 +11,5 @@
         finally (return a)))
 
 
-(princ (fib (1- (read))))
+(eval-when (:execute)
+  (princ (fib-iter (1- (read)))))

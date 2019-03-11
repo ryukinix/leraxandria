@@ -4,6 +4,8 @@
 
 ;; NOTE: I'm programming in Common Lisp or in LOOP-MACRO?
 
+(in-package :leraxandria/string)
+
 (defun make-prefix-table (pattern length)
   "Get the shift prefix array table to use on KMP
    algorithm. This value is used to shift string comparison
@@ -47,12 +49,13 @@
         else
           do (incf string-index)))
 
-(defun main ()
-  (loop repeat (read)
-        for string = (read-line)
-        for pattern = (read-line)
-        for found = (find-substring pattern string)
-        for message = (if found "YES" "NO")
-        do (format t "~a~%" message)))
+(eval-when (:execute)
+ (defun main ()
+   (loop repeat (read)
+      for string = (read-line)
+      for pattern = (read-line)
+      for found = (find-substring pattern string)
+      for message = (if found "YES" "NO")
+      do (format t "~a~%" message)))
 
-(main)
+ (main))

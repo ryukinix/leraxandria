@@ -1,6 +1,8 @@
 ;; Flipping Bits @ HackerRank Algorithms / Bit Manipulation
 ;; Solved by Manoel Vilela at 11/07/2017 05:05:05
 
+(in-package :leraxandria/math)
+
 (defun list-of-bits (integer)
   "Given a integer i return a list of bits
   Ex.: (integer-to-bits 3) => (1 1)
@@ -36,7 +38,8 @@
 (defun flip-integer (integer)
   (bits-to-integer (flip-bits (padding-bits integer))))
 
-
-(defun main ()
-  (loop repeat (read)
-        do (format t "~d~%" (flip-integer (read)))))
+(eval-when (:execute)
+  (defun main ()
+    (loop repeat (read)
+       do (format t "~d~%" (flip-integer (read)))))
+  (main))
