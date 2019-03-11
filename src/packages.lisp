@@ -20,4 +20,5 @@
            #:filter
            #:find-substring ;; leraxandria/string
            #:staircase
+           #:triangle
            #:compress-string))
