@@ -6,9 +6,12 @@
 (defun staircase (x pad)
   (format nil "~v:<~v,,,'#:<~>~>" pad x))
 
+
+(defun triangle (pad)
+  (loop for x from 1 to pad
+        do (format t "~a~%" (staircase x pad))))
+
 (eval-when (:execute)
   (defun main ()
-    (loop with pad = (read)
-       for x from 1 to pad
-       do (format t "~a~%" (staircase x pad))))
+    (triangle (read)))
   (main))

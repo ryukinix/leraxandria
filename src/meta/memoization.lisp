@@ -3,7 +3,7 @@
 ;; Lexical Memoization Macro
 ;; Example of usage: (memoize fib (fib 100))
 
-(in-package :leraxandria/math)
+(in-package :leraxandria/meta)
 
 (defmacro memoize (func &rest body)
   `(let ((table (make-hash-table))

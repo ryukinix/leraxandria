@@ -1,4 +1,6 @@
-/;; Enter your code here. Read input from STDIN. Print output to STDOUT
+;; Enter your code here. Read input from STDIN. Print output to STDOUT
+
+(in-package :leraxandria/math)
 
 (defun collect-points ()
   (loop repeat (read)

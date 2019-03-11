@@ -2,7 +2,9 @@
 
 
 (defpackage #:leraxandria
-  (:use #:leraxandria/math
+  (:use #:cl
+        #:cl-user
+        #:leraxandria/math
         #:leraxandria/meta
         #:leraxandria/string)
   (:export #:primep ;; leraxandria/math
@@ -18,5 +20,5 @@
            #:filter
            #:find-substring ;; leraxandria/string
            #:staircase
-           #:compress-string
-           ))
+           #:triangle
+           #:compress-string))
