@@ -22,24 +22,27 @@ Load leraxandria via `ros run`:
 (ql:quickload :leraxandria)
 ```
 
+[quicksys]: https://github.com/commonlispbr/quicksys
+[roswell]: https://github.com/roswell/roswell
+
 # Why this is useful?
 
 The main utilities are:
 
-* primep
-* factors
-* common-divisors
-* bits-to-integer
-* list-of-bits
-* memoize
-* transduce
-* range
-* partial
-* comp
-* filter
-* find-substring
-* staircase
-* compress-string
+* `primep`
+* `factors`
+* `common-divisors`
+* `bits-to-integer`
+* `list-of-bits`
+* `memoize`
+* `transduce`
+* `range`
+* `partial`
+* `comp`
+* `filter`
+* `find-substring`
+* `staircase`
+* `compress-string`
 
 # Apps
 
