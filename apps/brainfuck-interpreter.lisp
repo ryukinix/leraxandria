@@ -2,6 +2,12 @@
 ;; Author: Manoel Vilela
 ;; Date: 10/07/2017 02:24:40
 
+(defpackage :leraxandria/brainfuck
+  (:use :cl :cl-user)
+  (:export #:main))
+
+(in-package :leraxandria/brainfuck)
+
 ;; constants
 (defparameter *max-operations* 100000)
 (defparameter *valid-operations* "<>+-.,[]")
@@ -141,10 +147,21 @@
         while (> x 0)))
 
 (defun main ()
-  (let ((input-length (read))
-        (source-length (read)))
+  (let ((input-length (progn
+                        (format t "INPUT LENGTH: ")
+                        (force-output)
+                        (read)))
+        (source-length (progn
+                         (format t "SOURCE LENGTH: ")
+                         (force-output)
+                         (read))))
+    (format t "INPUT: ")
+    (force-output)
     (get-user-input input-length)
+    (format t "SOURCE: ")
+    (force-output)
     (read-source source-length)
     (interpret-program)))
 
-(main)
+(eval-when (:execute)
+  (main))

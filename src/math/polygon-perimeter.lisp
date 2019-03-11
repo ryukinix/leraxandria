@@ -1,5 +1,7 @@
 ;; Manoel Vilela
 
+(in-package :leraxandria/math)
+
 (defun collect-points ()
   (loop repeat (read) ;; n points
         collect (cons (read) (read)))) ;; pairs
@@ -22,8 +24,9 @@
 (defun reduce-perimeter (points)
   (reduce #'+ (mapcar #'segment-length (segments points))))
 
-(defun main ()
-  (let ((perimeter (reduce-perimeter (collect-points))))
-    (format t "~d~%" perimeter)))
+(eval-when (:execute)
+ (defun main ()
+   (let ((perimeter (reduce-perimeter (collect-points))))
+     (format t "~d~%" perimeter)))
 
-(main)
+ (main))

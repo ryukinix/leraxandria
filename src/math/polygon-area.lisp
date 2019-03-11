@@ -1,5 +1,7 @@
 ;; Manoel Vilela -- HackerRank
 
+(in-package :leraxandria/math)
+
 (defun collect-points ()
   (loop repeat (read) ;; n points
         collect (cons (read) (read)))) ;; pairs
@@ -20,8 +22,9 @@
   (/ (abs (reduce #'+ (mapcar #'cross-fit (segments points))))
      2))
 
-(defun main ()
-  (let ((area (reduce-area (collect-points))))
-    (format t "~f~%" area)))
+(eval-when (:execute)
+ (defun main ()
+   (let ((area (reduce-area (collect-points))))
+     (format t "~f~%" area)))
 
-(main)
+ (main))

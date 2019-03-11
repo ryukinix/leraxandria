@@ -4,6 +4,9 @@
 ;; calculate the area under curve and the revolution-x volume by
 ;; a polynomial.
 ;; feita em 10/07/2017 00:38:29
+
+(in-package :leraxandria/math)
+
 (defparameter *dx* 0.001)
 
 ;; correto
@@ -36,12 +39,13 @@
   (* pi (numerical-integrate (lambda (x) (expt (funcall f x) 2))
                              *dx* a b)))
 
-(defun main ()
-  (let* ((f (get-polynomial))
-         (a (read))
-         (b (read))
-         (area (get-area f a b))
-         (volume (get-volume f a b)))
-    (format t "~,2f~%~,2f~%" area volume)))
+(eval-when (:execute)
+ (defun main ()
+   (let* ((f (get-polynomial))
+          (a (read))
+          (b (read))
+          (area (get-area f a b))
+          (volume (get-volume f a b)))
+     (format t "~,2f~%~,2f~%" area volume)))
 
-(main)
+ (main))

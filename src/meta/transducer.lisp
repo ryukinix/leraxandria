@@ -23,7 +23,9 @@
 (defmacro partial (f pred)
   `(lambda (x) (,f ,pred x)))
 
-(print (transducer (comp (partial filter #'evenp)
-                         (partial mapcar #'square))
-                   #'+
-                   (range 1 10)))
+(eval-when (:execute)
+
+    (print (transducer (comp (partial filter #'evenp)
+                             (partial mapcar #'square))
+                       #'+
+                       (range 1 10))))

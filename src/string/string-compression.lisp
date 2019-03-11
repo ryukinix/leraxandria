@@ -1,5 +1,7 @@
 ;; Enter your code here. Read input from STDIN. Print output to STDOUT
 
+(in-package :leraxandria/string)
+
 ;; "aaabbc" => ((#\a  3) (#\b  2) (#\c  1))
 (defun string-char-map (string)
   (let ((alist nil))
@@ -20,6 +22,7 @@
 (defun compress-string (string)
   (format nil "~{~A~}" (join-char-map (string-char-map string))))
 
-
-(defun main ()
-  (format t "~A~%" (compress-string (read-line))))
+(eval-when (:execute)
+  (defun main ()
+    (format t "~A~%" (compress-string (read-line))))
+  (main))
